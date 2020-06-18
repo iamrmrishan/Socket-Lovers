@@ -26,7 +26,7 @@ public class Client extends Application {
 	private TextField enterName = new TextField();
 	public static TextField enterMessage = new TextField();
 	private Scene scene1, scene2;
-	private Button submitName = new Button("Join Chatroom");
+	private Button submitName = new Button("Join Socket Lovers");
 
 	public static String name = "defualt name";
 
@@ -40,13 +40,12 @@ public class Client extends Application {
 		root1.setVgap(15); // set vertical gap
 		root1.setHgap(5); // set horizontal gap
 		root1.setAlignment(Pos.CENTER);
-		root1.add(new Label("Enter your name here: "), 0, 0);
+		root1.add(new Label("Enter your name: "), 0, 0);
 		root1.add(enterName, 0, 1);
 		root1.add(submitName, 1, 1);
-
 		scene1 = new Scene(root1);
 		primaryStage.setScene(scene1);
-		primaryStage.setTitle("Chat Room");
+		primaryStage.setTitle("Welcome to Socket lovers");
 		primaryStage.show();
 
 		ConnectServer connectServer = new ConnectServer();
@@ -70,6 +69,7 @@ public class Client extends Application {
 
 			scene2 = new Scene(root2);
 			primaryStage.setScene(scene2);
+			primaryStage.setTitle(name);
 		});
 
 		// scene2 -- enterMessage
