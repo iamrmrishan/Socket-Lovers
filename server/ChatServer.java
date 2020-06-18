@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class ChatServer extends Application {
 
-	public static Label logs = new Label("[Chat Server Logs]");
+	public static Label logs = new Label("[Server Logs]");
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -30,7 +30,7 @@ public class ChatServer extends Application {
 		layout.setPrefSize(400, 600);
 		layout.setContent(logs);
 		
-		primaryStage.setTitle("Chat Server");
+		primaryStage.setTitle("Socket Lovers Server");
 		primaryStage.setScene(new Scene(layout));
 		primaryStage.show();
 	}
