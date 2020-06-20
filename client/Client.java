@@ -2,6 +2,7 @@ package chat.client;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import chat.server.ChatServer;
@@ -78,8 +79,25 @@ public class Client extends Application {
 			if (event.getCode() == KeyCode.ENTER) {
 				DataOutputStream out = connectServer.getDataOuputStream();
 				String msg = Client.enterMessage.getText();
+				// Encrypt the messages Type - Caesar cipher - Key = 5
+				int i = 0;
+
+				char[] chars = msg.toCharArray();
+				int k = chars.length;
+				char[] myenchar = new char[k];
+				for (char c : chars) {
+
+					c += 5;
+					myenchar[i] = c;
+
+					i += 1;
+
+				}
+
+				String enmsg = new String(myenchar);
+
 				try {
-					out.writeUTF(msg); // send msg to ChatServer through DataOutputStream
+					out.writeUTF(enmsg); // send msg to ChatServer through DataOutputStream
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -121,8 +139,11 @@ class ConnectServer implements Runnable {
 			// This loop is to keep reading data from Server
 			while (true) {
 				String str = in.readUTF();
+
 				Platform.runLater(() -> {
 					Client.logs.setText(Client.logs.getText() + "\n" + str);
+					System.out.println(str);
+
 				});
 			}
 		} catch (IOException e) {
